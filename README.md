@@ -109,6 +109,11 @@ Vanuit architectuurperspectief zijn de volgende keuzes gemaakt:
 
 ![Architectuur](assets/architecture-20241118.svg)
 
+* de structuur (logisch model) van de dataset is gebaseerd op het [conceptuele
+  model Begrippenmodel NBNL](https://begrippen.netbeheernederland.nl/) en het
+  [Common Information Model](https://cim-mg.ucaiug.io/latest/);
+* het dataproduct *GV Meetdata* is vindbaar via het EDSN Dataportaal.
+
 # Dataset
 
 ## Volume, variety, veracity, velocity

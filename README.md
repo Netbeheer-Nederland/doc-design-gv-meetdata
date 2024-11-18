@@ -56,7 +56,7 @@ Data kent vier kenmerken:
 
 # Dataservice
 
-## Gebruiksscenarios
+## Gebruiksscenario
 
 In dit scenario vraagt de GV-klant of een *derde* (zoals een adviesbureau of
 ontwikkelbedrijf) meetgegevens op bij de netbeheerder van een GV-klant. Hierbij

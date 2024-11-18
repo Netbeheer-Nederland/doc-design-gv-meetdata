@@ -69,9 +69,6 @@ toestemming](https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-alge
 > authenticatie dient aangesloten te worden op bestaande processen. Indien er
 > geen *enrolment- en authenticatieproces* is *moet* deze worden ingericht.
 
-> [!IMPORTANT] Niet alle netbeheerders kennen een faciliteit om derden te
-> authenticeren.
-
 ![Gebruiksscenario](assets/use_case-20241118.svg)
 
 1. een GV-klant of een derde (e.g. een ontwikkelbedrijf) vraagt
@@ -135,4 +132,5 @@ aangeboden.
 |------------|----------------------------------------------------------------|
 | Aanname    | Meetgegevens worden per aansluiting verstrekt, waarbij meetgegevens worden geaggregeerd vanuit alle onderliggende allocatiepunten. |
 | Aanname    | EDSN maakt geen aanpassingen in de bestaande interface(s) van C-ARM. |
-| Aanname    | De aangeslotene verleent toestemming over toegang tot *al* haar meetdata |
+| Aanname    | De aangeslotene verleent toestemming over toegang tot *al* haar meetdata. |
+| Aanname    | Zowel GV-klant als aangeslotene als derde zijn te authenticeren. |

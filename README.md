@@ -58,7 +58,8 @@ Data kent vier kenmerken:
 
 Het dataproduct is onderheving aan functionele eisen.
 
-| Als          | Wil ik | Want |
+| Als          | Wil ik | Want                                                |
+|--------------|--------|-----------------------------------------------------|
 | Netbeheerder | Een geldigheid van 90 dagen op een verleende toestemming | Ik beperk het aantal toestemmingverzoeken. |
 
 # Dataservice

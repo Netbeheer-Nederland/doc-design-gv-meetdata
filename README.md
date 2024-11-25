@@ -8,10 +8,10 @@ Meetdata*, alsmede de achterliggende architectuur en gemaakte keuzes.
 Er is steeds meer behoefte aan inzicht in data over energieverbruik en
 energieopwekking van grootverbruikers (GV) om optimaal gebruik te maken van de
 beschikbare energiecapaciteit. Deze data is bijvoorbeeld relevant voor
-bedrijven die als energy-hub willen samenwerken op een industrieterrein of voor
-organisaties die individuele bedrijven willen helpen met duurzame energie
-oplossingen en energiebesparingen. De GV is eigenaar van deze data en moet
-toestemming geven aan andere partijen om de data te gebruiken. Een erkend
+bedrijven die willen samenwerken op een industrieterrein of voor organisaties
+die individuele bedrijven willen helpen met duurzame energie oplossingen en
+energiebesparingen. De GV-klant is eigenaar van deze data en moet toestemming
+geven aan andere partijen om de data te gebruiken. Een erkend
 meetverantwoordelijke (MV) verzorgt de metingen van deze data.
 
 Dit ontwerp beschrijft het proces om tot ontsluiting van het bijbehorende
@@ -54,11 +54,20 @@ Data kent vier kenmerken:
   voor de toepassing;
 * *velocity* (snelheid): de frequentie waarmee data verandert.
 
+# Functionele eisen
+
+Het dataproduct is onderheving aan functionele eisen.
+
+| Als | Wil ik | Want |
+| Netbeheerder | Een geldigheid van 90 dagen op een verleende toestemming | Ik beperk het aantal toestemmingverzoeken. |
+
 # Dataservice
 
 In beide gebruiksscenario's vraagt de GV-klant of een *derde* (zoals een
 adviesbureau of ontwikkelbedrijf) meetgegevens op bij de netbeheerder van een
-GV-klant. Hierbij vervult de GV-klant de rol van *Aangeslotene*.
+GV-klant. Indien een derde meetgegevens opvraagt dient toestemming verleend te
+worden door de aangeslotene. Hierbij vervult de GV-klant de rol van
+*aangeslotene*.
 
 > [!IMPORTANT]
 > Beide gebruiksscenario's gaan uit van *geauthenticeerde rollen*. Voor
@@ -162,9 +171,9 @@ aansluiting(en) gaat.
 
 | Type       | Beschrijving                                                   |
 |------------|----------------------------------------------------------------|
+| Aanname    | Netbeheerders hebben de gevraagde meetgegevens (dataset) beschikbaar voor levering als decentraal dataproduct. |
 | Aanname    | EDSN maakt geen aanpassingen in de bestaande interface(s) voor het decentrale dataproduct. |
-| Aanname    | De aangeslotene verleent toestemming over toegang tot *al* haar meetdata behorende bij een aansluiting. |
-| Aanname    | Zowel GV-klant, als aangeslotene, als derde zijn te identificeren en authenticeren. |
-| Aanname    | NBs leiden vragen voor meetdata direct door naar het *meetdataregister*. |
+| Aanname    | De aangeslotene verleent toestemming over toegang tot *al* haar meetdata behorende bij een aansluiting. Dit voorkomt toestemmingverzoeken voor meetgegevens in een tijdsperiode. |
+| Aanname    | Zowel GV-klant, als aangeslotene, als derde zijn te identificeren, authenticeren en te benaderen voor communicatie. |
 | Aanname    | Toestemming wordt verleend op basis van de combinatie derde/aansluiting. |
-| Aanname    | Partners in Energie stopt met het invullen van maatwerkverzoeken voor meetdata na implementatie van het centrale dataproduct. |
+| Aanname    | *Partners in Energie* stopt met het invullen van maatwerkverzoeken voor meetdata na implementatie van het centrale dataproduct. |

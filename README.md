@@ -56,52 +56,75 @@ Data kent vier kenmerken:
 
 # Dataservice
 
-## Gebruiksscenario
-
-In dit scenario vraagt de GV-klant of een *derde* (zoals een adviesbureau of
-ontwikkelbedrijf) meetgegevens op bij de netbeheerder van een GV-klant. Hierbij
-vervult de GV-klant de rol van *Aangeslotene*. Meetdata wordt verstrekt onder
-de [Grondslag
-toestemming](https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/grondslag-toestemming).
+In beide gebruiksscenario's vraagt de GV-klant of een *derde* (zoals een
+adviesbureau of ontwikkelbedrijf) meetgegevens op bij de netbeheerder van een
+GV-klant. Hierbij vervult de GV-klant de rol van *Aangeslotene*.
 
 > [!IMPORTANT]
-> Het gebruiksscenario gaat uit van *geauthenticeerde rollen*. Voor
+> Beide gebruiksscenario's gaan uit van *geauthenticeerde rollen*. Voor
 > authenticatie dient aangesloten te worden op bestaande processen. Indien er
 > geen *enrolment- en authenticatieproces* is *moet* deze worden ingericht.
 
-![Gebruiksscenario](assets/use_case-20241118.svg)
+De gebruiksscenario's beschrijven niet het uitvalproces (*happy flow*), deze
+stappen dienen apart beschreven en geïmplementeerd te worden.
 
-1. een GV-klant of een derde (e.g. een ontwikkelbedrijf) vraagt
-   meetgegevens voor één of meerdere aansluitingen bij de corresponderende
-   netbeheerder. GV-klanten vragen meetdata aan voor eigen aansluitingen,
-   derden voor te specificeren aansluitingen;
-2. de netbeheerder toetst of er toestemming is verleend voor de combinatie
-   derde/aansluiting. In de GV-klant meetdata voor eigen aansluitingen
-   aanvraagt is toestemming niet vereist;
+## Gebruiksscenario: centraal dataproduct
+
+![Gebruiksscenario](assets/use_case_01-20241125.svg)
+
+1. een *GV-klant* of een *derde* (e.g. een ontwikkelbedrijf) vraagt
+   meetgegevens op voor één of meerdere aansluitingen bij het *EDSN
+   meetdataregister*.  GV-klanten vragen meetdata aan voor eigen
+   aansluiting(en), derden voor te specificeren aansluitingen;
+2. het meetdataregister toetst of er toestemming is verleend voor de combinatie
+   derde/aansluiting. Indien de GV-klant meetdata voor eigen aansluiting(en)
+   aanvraagt is toestemming niet vereist en wordt de meetdata geleverd (stap
+   6);
 3. indien er geen toestemming is voor opvragen van de meetdata wordt de
-   aangeslotene gevraagd deze te verlenen;
+   *aangeslotene* gevraagd deze te verlenen. De aangeslotene kan potentieel
+   weken wachten voordat toestemming verleend of afgewezen wordt;
 4. de verleende toestemming wordt vastgelegd in het Toestemmingplatform;
-5. het Toestemmingplatform notificeert netbeheerder dat toestemming verleend
-   is door de aangeslotene;
-6. de netbeheerder vraagt op basis van de EANs behorende bij de GV-klant de
-   meetgegevens op bij EDSN, vanuit het C-ARM. Indien de aanvraag door een
-   derde is gedaan wordt de meetdata op basis van de in de toestemming
-   vastgelegde aansluitingen geleverd;
-7. EDSN levert de meetgegevens vanuit het C-ARM;
-8. de netbeheerder verwerkt de meetgegevens, waarbij de meetgegevens in een
-   voor de GV-klant bruikbaar formaat worden omgezet;
-9. de meetgegevens worden aan de GV-klant geleverd.
+5. het Toestemmingplatform notificeert het meetdataregister dat toestemming
+   verleend is door de aangeslotene;
+6. het meetdataregister levert de meetgegevens, onder het *uniforme schema*.
 
 Het beschreven scenario kent een aantal varianten voor implementatie:
 
-* de netbeheerder kan ervoor kiezen handmatig de verzoeken voor meetdata af te
-  handelen. Hierbij zal de *service desk* van de netbeheerder (of *Partners in
-  Energie* voor Liander) de verzoeken richting het Toestemmingplatform en EDSN
-  uitvoeren;
-* de netbeheerder kan het *opvragen van meetdata* onderdeel maken van de
-  *Mijn-omgeving*, waarbij de bevraging geautomatiseerd wordt uitgevoerd. Dit
-  vereist dat derden toegang hebben tot de *Mijn-omgeving* van elke
-  netbeheerder;
+* de netbeheerder leidt *GV-klanten* vanuit de *Mijn-omgeving* door naar het
+  meetdataregister;
+* de netbeheerder leidt *derden* door naar het meetdataregister;
+* de netbeheerder ontsluit het meetdataregister vanuit de Mijn-omgeving.
+  Hiervoor vraagt de netbeheerder onder eigen autorisatie de meetgegevens op
+  voor de geauthenticeerde GV-klant;
+* de netbeheerder ontsluit het meetdataregister vanuit de partner- of
+  derdenomgeving. Een derde vraagt voor specifieke aansluiting(en) meetgegevens
+  op, welke na toestemming van de aangeslotene worden geleverd. Niet alle
+  netbeheerders kennen een dergelijke partneromgeving.
+
+## Gebruikersscenario: decentraal dataproduct
+
+![Gebruiksscenario](assets/use_case_02-20241125.svg)
+
+1. een *GV-klant* of een *derde* (e.g. een ontwikkelbedrijf) vraagt
+   meetgegevens op voor één of meerdere aansluitingen bij de netbeheerder.
+   GV-klanten vragen meetdata aan voor eigen aansluiting(en), derden voor te
+   specificeren aansluitingen;
+2. de netbeheerder toetst of er toestemming is verleend voor de combinatie
+   derde/aansluiting. Indien de GV-klant meetdata voor eigen aansluiting(en)
+   aanvraagt is toestemming niet vereist en wordt de meetdata geleverd (stap
+   5);
+3. indien er geen toestemming is voor opvragen van de meetdata wordt de
+   *aangeslotene* gevraagd deze te verlenen. De aangeslotene kan potentieel
+   weken wachten voordat toestemming verleend of afgewezen wordt;
+4. de verleende toestemming wordt vastgelegd in de administratie van de
+   netbeheerder;
+5. de netbeheerder levert de meetgegevens, onder het *uniforme schema*.
+
+Het beschreven scenario kent een aantal varianten voor implementatie:
+
+* de netbeheerder levert meetdata als voor de *GV-klant* vanuit de *Mijn-omgeving*;
+* de netbeheerder levert meetdata als *maatwerkverzoek* vanuit de eigen *service
+  desk*, of gedelegeerd naar *Partners in Energie*.
 
 ## Architectuur
 
@@ -129,13 +152,19 @@ Vanuit architectuurperspectief zijn de volgende keuzes gemaakt:
 
 Dit dataproduct wordt als [gesloten
 data](https://github.com/Netbeheer-Nederland/am-doelarchitectuur-datadelen/blob/cebef14d35eaedd808cf9cb9ec7e931d0c5178c3/assets/20230217_NBNL_T5_Visie%20op%20datadelen_V1.01.pdf)
-aangeboden.
+aangeboden, onder de [Grondslag
+toestemming](https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/grondslag-toestemming).
+De grondslag is vereist indien een derde de aanvraag doet, voor een GV-klant is
+toestemming **niet** vereist indien het om meetdata van de eigen
+aansluiting(en) gaat.
 
 # Beslissingen en aannames
 
 | Type       | Beschrijving                                                   |
 |------------|----------------------------------------------------------------|
-| Aanname    | Meetgegevens worden per aansluiting verstrekt, waarbij meetgegevens worden geaggregeerd vanuit alle onderliggende allocatiepunten. |
-| Aanname    | EDSN maakt geen aanpassingen in de bestaande interface(s) van C-ARM. |
-| Aanname    | De aangeslotene verleent toestemming over toegang tot *al* haar meetdata. |
-| Aanname    | Zowel GV-klant als aangeslotene als derde zijn te authenticeren. |
+| Aanname    | EDSN maakt geen aanpassingen in de bestaande interface(s) voor het decentrale dataproduct. |
+| Aanname    | De aangeslotene verleent toestemming over toegang tot *al* haar meetdata behorende bij een aansluiting. |
+| Aanname    | Zowel GV-klant, als aangeslotene, als derde zijn te identificeren en authenticeren. |
+| Aanname    | NBs leiden vragen voor meetdata direct door naar het *meetdataregister*. |
+| Aanname    | Toestemming wordt verleend op basis van de combinatie derde/aansluiting. |
+| Aanname    | Partners in Energie stopt met het invullen van maatwerkverzoeken voor meetdata na implementatie van het centrale dataproduct. |
